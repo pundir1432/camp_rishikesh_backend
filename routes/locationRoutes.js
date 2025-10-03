@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('../middleware/upload');
-const { createLocation, getLocations, updateLocation, deleteLocation, calculateDistance } = require('../controllers/locationController');
+const { createLocation, getLocations, updateLocation, deleteLocation, calculateDistance, calculateDistanceFromUser, getCoordinates } = require('../controllers/locationController');
 
 // @route   POST /api/location
 router.post('/', upload.single('image'), createLocation);
@@ -17,5 +17,11 @@ router.delete('/:id', deleteLocation);
 
 // @route   POST /api/location/calculate-distance
 router.post('/calculate-distance', calculateDistance);
+
+// @route   POST /api/location/user-distance
+router.post('/user-distance', calculateDistanceFromUser);
+
+// @route   POST /api/location/geocode
+router.post('/geocode', getCoordinates);
 
 module.exports = router;

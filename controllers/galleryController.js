@@ -40,9 +40,16 @@ exports.getGallery = async (req, res) => {
         }
         
         const gallery = await Gallery.find(filter).sort({ createdAt: -1 });
+        
+        // Add full image URL
+        const galleryWithUrls = gallery.map(item => ({
+            ...item.toObject(),
+            imageUrl: item.image ? `${req.protocol}://${req.get('host')}/uploads/gallery/${item.image}` : null
+        }));
+        
         res.status(200).json({
             status: 200,
-            data: gallery
+            data: galleryWithUrls
         });
     } catch (err) {
         res.status(500).json({ message: err.message });
