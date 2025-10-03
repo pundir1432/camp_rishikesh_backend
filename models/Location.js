@@ -4,7 +4,7 @@ const locationSchema = new mongoose.Schema({
     type: {
         type: String,
         required: true,
-        enum: ['Travel', 'Restaurant', 'Rafting', 'Other']
+        enum: ['Adventure', 'Landmark', 'Cultural', 'Spiritual', 'Nature', 'Wildlife', 'Other']
     },
     title: {
         type: String,
@@ -45,6 +45,16 @@ const locationSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    coordinates: {
+        latitude: {
+            type: Number,
+            required: false
+        },
+        longitude: {
+            type: Number,
+            required: false
+        }
     },
     createdAt: {
         type: Date,
