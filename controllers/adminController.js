@@ -20,7 +20,6 @@ exports.adminSignin = async (req, res) => {
         console.log('Login attempt:', { email, password });
 
         const admin = await Admin.findOne({ email });
-        console.log('Admin found:', admin ? 'Yes' : 'No');
         if (!admin) {
             return res.status(400).json({ message: 'Admin not found' });
         }
