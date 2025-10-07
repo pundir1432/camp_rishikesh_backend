@@ -18,7 +18,7 @@ const authMiddleware = (req, res, next) => {
 router.get('/booking/:bookingId', authMiddleware, async (req, res) => {
     try {
         const messages = await Message.find({ bookingId: req.params.bookingId })
-            .populate('userId', 'name')
+            .populate('userId', 'name email')  // Populate user details
             .sort({ timestamp: 1 });
         res.json(messages);
     } catch (err) {
